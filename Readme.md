@@ -3,6 +3,8 @@
 
 This is a set of scripts for creating nice preview page (see here: http://cs.stanford.edu/~karpathy/nipspreview/ ) for all papers published at NIPS. I hope these scripts can be useful to others to create similar pages for other conferences. They show how one can manipulate PDFs, extract image thumbnails, analyze word frequencies, do AJAX requests to load abstracts, etc.
 
+** works with new NIPS website **
+
 #### Installation
 
 0. Clone this repository `git clone https://github.com/karpathy/nipspreview.git`
