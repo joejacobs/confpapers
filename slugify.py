@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #coding: utf-8
+
+# by Alvaro Justen (https://gist.github.com/turicas/1428479)
  
 from unicodedata import normalize
  
