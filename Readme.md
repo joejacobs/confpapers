@@ -7,7 +7,7 @@ This is a set of scripts for creating nice preview page (see here: http://cs.sta
 
 0. Clone this repository `git clone https://github.com/karpathy/nipspreview.git`
 
-1. Download nips25offline from `http://books.nips.cc/nips25.html` and move it into the folder created in step 0
+1. Run `getnipspapers.py` (scrapes NIPS website paper IDs, titles, abstracts, PDFs, author lists, etc. Output saved in nipsXXoffline/, abstracts/ and paper.p)
 
 2. Make sure you have ImageMagick: `sudo apt-get install imagemagick`
 
@@ -15,15 +15,11 @@ This is a set of scripts for creating nice preview page (see here: http://cs.sta
 
 4. Run `pdftothumbs.py` (to generate tiny thumbnails for all papers. Outputs saved in thumbs/ folder)
 
-5. Run `scrape.py` (to generate paperid, title, authors list by scraping NIPS .html page)
+5. Run `makecorpus.py` (to create allpapers.txt file that has all papers one per row)
 
-6. Run `makecorpus.py` (to create allpapers.txt file that has all papers one per row)
+6. Run `python lda.py -f allpapers.txt -k 7 --alpha=0.5 --beta=0.5 -i 100` . This will generate a pickle file called `ldaphi.p` that contains the LDA word distribution matrix. Thanks to this [nice LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py) by shuyo! It requires nltk library and numpy. In this example we are using 7 categories. You would need to change the `nipsnice_template.html` file a bit if you wanted to try different number of categories.
 
-7. Run `python lda.py -f allpapers.txt -k 7 --alpha=0.5 --beta=0.5 -i 100` . This will generate a pickle file called `ldaphi.p` that contains the LDA word distribution matrix. Thanks to this [nice LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py) by shuyo! It requires nltk library and numpy. In this example we are using 7 categories. You would need to change the `nipsnice_template.html` file a bit if you wanted to try different number of categories.
-
-8. Generate the abstract files inside abstracts/ folder using `getabstracts.py`. Some user interaction may be necessary because of poorly formatted papers that make abstract extraction a pain. See script.
-
-9. Finally, run `generatenicelda.py` (to create the nipsnice.html page)
+7. Finally, run `generatenicelda.py` (to create the nipsnice.html page)
 
 #### Licence
 

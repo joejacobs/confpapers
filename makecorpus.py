@@ -10,7 +10,7 @@ stopwords = open("stopwords.txt", "r").read().split()
 stopwords = [x.strip(punctuation) for x in stopwords if len(x)>2]
 
 # get list of all PDFs supplied by NIPS
-relpath = "nips25offline/content/"
+relpath = "nips26offline/content/"
 allFiles = os.listdir(relpath)
 pdfs = [x for x in allFiles if x.endswith(".pdf")]
 

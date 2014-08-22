@@ -3,24 +3,30 @@
 # requires sudo apt-get install imagemagick
 
 import os
+import code
 
-relpath = "nips25offline/content/"
+relpath = "nips26offline/content/"
 allFiles = os.listdir(relpath)
 pdfs = [x for x in allFiles if x.endswith(".pdf")]
 
 for i,f in enumerate(pdfs):
-	paperid = f[9:-4]
-	fullpath = relpath + f
 
-	print "processing %s, %d/%d" % (paperid, i, len(pdfs))
+    paperid = f[:4]
+    fullpath = relpath + f
 
-	# this is a mouthful... 
-	# take first 8 pages of the pdf ([0-7]), since 9th page are references
-	# tile them horizontally, use JPEG compression 80, trim the borders for each image
-	cmd = "montage %s[0-7] -mode Concatenate -tile x1 -quality 80 -resize x230 -trim %s" % (fullpath, "thumbs/" + f + ".jpg")
-	print "EXEC: " + cmd
-	os.system(cmd)
-	
+    if os.path.isfile("thumbs/" + f + ".jpg"):
+
+        continue
+
+    print "processing %s, %d/%d" % (paperid, i, len(pdfs))
+
+    # this is a mouthful... 
+    # take first 8 pages of the pdf ([0-7]), since 9th page are references
+    # tile them horizontally, use JPEG compression 80, trim the borders for each image
+    cmd = "montage %s[0-7] -mode Concatenate -tile x1 -quality 80 -resize x230 -trim %s" % (fullpath, "thumbs/" + f + ".jpg")
+    print "EXEC: " + cmd
+    os.system(cmd)
+    
 
 # an alternate, more roundabout alternative that is worse and requires temporary files, yuck!
 #cmd = "convert -thumbnail x200 %s[0-7] test.png" % (fullpath, )

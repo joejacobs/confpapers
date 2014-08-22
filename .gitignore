@@ -1,0 +1,8 @@
+thumbs
+abstracts
+*.pyc
+*.p
+*.txt
+*.swp
+nips*offline
+nipsnice.html
